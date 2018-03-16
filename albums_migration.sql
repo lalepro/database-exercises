@@ -8,4 +8,4 @@ create table if not exists albums(
  sales DECIMAL(6,2),
  genre VARCHAR (120),
  PRIMARY KEY (id)
-);my
+);
