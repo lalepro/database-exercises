@@ -9,3 +9,5 @@ SELECT genre from albums where name = 'Nevermind';
 select * from albums where YEAR >=1990 && YEAR < 2000;
 
 select * from albums where genre = 'rock';
+
+
