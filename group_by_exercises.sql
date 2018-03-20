@@ -30,11 +30,30 @@ WHERE last_name LIKE 'e%' AND last_name LIKE '%e'
 GROUP BY last_name
 ORDER BY last_name;
 
+SELECT hire_date, count(*)
+FROM employees
+GROUP BY hire_date
+ORDER BY count(*) desc
+LIMIT 10;
 
+SELECT max(birth_date)
+FROM employees;
 
+SELECT min(birth_date)
+FROM employees;
 
+SELECT avg(salary)
+FROM salaries
+WHERE emp_no = 10001;
 
+SELECT avg(salary)
+FROM salaries
+GROUP BY emp_no
+LIMIT 5;
 
+SELECT avg(salary)
+FROM salaries
+WHERE emp_no = 10003;
 
 
 # GROUP BY EXERCISES
@@ -42,7 +61,8 @@ ORDER BY last_name;
 # 2 In your script, use DISTINCT to find the unique
 # titles in the titles table.
 
-SELECT DISTINCT title FROM employees.titles;
+SELECT DISTINCT title
+FROM employees.titles;
 
 # 3 Find your query for employees whose last names start
 # and end with 'E'. Update the query find just the unique
@@ -64,6 +84,12 @@ WHERE last_name LIKE 'e%e'
 GROUP BY first_name, last_name
 ORDER BY last_name;
 
+SELECT first_name, count(last_name)
+FROM employees
+WHERE last_name LIKE 'e%e'
+GROUP BY first_name, last_name
+ORDER BY last_name;
+
 # 5 Find the unique last names with a 'q' but not 'qu'.
 
 SELECT DISTINCT last_name
@@ -74,7 +100,6 @@ WHERE last_name LIKE '%q%' AND
 # 6 Add a COUNT() to your results and use ORDER BY to
 # make it easier to find employees whose unusual name
 # is shared with others.
-
 SELECT count(DISTINCT last_name)
 FROM employees
 WHERE last_name LIKE '%q%' AND
@@ -83,7 +108,6 @@ WHERE last_name LIKE '%q%' AND
 # 7 Update your query for 'Irena', 'Vidya', or 'Maya'.
 # Use count(*) and GROUP BY to find the number of
 # employees for each gender with those names.
-
 SELECT concat(count(first_name), ' ', gender)
 FROM employees
   WHERE first_name
