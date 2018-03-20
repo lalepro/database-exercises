@@ -31,7 +31,7 @@ SELECT * FROM employees WHERE first_name IN ('irena', 'vidya', 'maya');
 # OR
 SELECT * FROM employees WHERE first_name = 'Irena' OR first_name = 'Vidya' OR first_name = 'Maya';
 # 3 Find all employees whose last name starts with 'E' — 7,330 rows.
-SELECT * FROM employees WHERE last_name LIKE 'E%';
+SELECT * FROM employees WHERE last_name LIKE '%az';
 # 4 Find all employees hired in the 90s — 135,214 rows.
 SELECT * FROM employees WHERE hire_date BETWEEN '1990-01-01' and '1999-12-31';
 # 5 Find all employees born on Christmas — 842 rows.
