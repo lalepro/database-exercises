@@ -2,7 +2,7 @@ USE employees;
 
 SELECT * FROM employees;
 
-# limit
+
 SELECT DISTINCT last_name
 FROM employees
 ORDER BY last_name
@@ -20,8 +20,7 @@ LIMIT 5;
 SELECT *
 FROM employees
 WHERE hire_date
-      BETWEEN '1990-01-01'
-      and '1999-12-31'
+      LIKE '199%'
       and birth_date
           LIKE '%-12-25'
 ORDER BY
@@ -31,15 +30,3 @@ LIMIT 5
 OFFSET 45;
 
 
-
-# offset
-
-SELECT
-  emp_no,
-  first_name,
-  last_name
-FROM employees
-WHERE first_name
-      LIKE 'M%'
-LIMIT 20
-OFFSET 60;
