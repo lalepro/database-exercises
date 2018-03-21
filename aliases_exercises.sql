@@ -39,6 +39,14 @@ FROM employees AS emp
 GROUP BY full_name
 LIMIT 10;
 
+# SELECT *
+#   From employees as e, salaries as s
+# WHERE e.first_name in ('irena')
+# order by s.emp_no
+# LIMIT 5;
+
+
+
 
 # 3 Return 10 employees in a result set named 'full_name'
 # in the format of 'lastname, firstname' for each employee.
@@ -58,6 +66,6 @@ LIMIT 10;
 # so it is formatted as 'employee number - lastname, firstname'.
 SELECT concat(emp_no, ' - ',last_name, ' ', first_name) as full_name, concat(birth_date) AS DOB
 FROM employees
-GROUP BY emp_no
+GROUP BY full_name, DOB
 LIMIT 10;
 
