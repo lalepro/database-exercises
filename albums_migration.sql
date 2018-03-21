@@ -9,3 +9,4 @@ create table if not exists albums(
  genre VARCHAR (120),
  PRIMARY KEY (id)
 );
+
