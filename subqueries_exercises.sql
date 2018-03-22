@@ -1,34 +1,10 @@
 USE employees;
 
-SELECT first_name, last_name, birth_date
-FROM employees
-WHERE emp_no IN (
-  SELECT emp_no
-  FROM dept_manager
-)
-LIMIT 10;
+# ANYTHING YOU CAN DO WITH SUBQUERY YOU CAN ALSO DO WITH A JOIN
+
+# USE A SUBQUERY WHEN YOU DON'T CARE ABOUT DATA FROM ANOTHER TABLE, YOU JUST NEED TO FILTER BY IT'
 
 
-SELECT *
-FROM employees
-WHERE emp_no In (
-  SELECT emp_no
-  FROM dept_manager
-  WHERE to_date > curdate()
-)
-LIMIT 10;
-
-SELECT *
-FROM employees
-WHERE emp_no IN (
-  SELECT emp_no
-  FROM dept_emp
-  WHERE dept_no = (
-    SELECT dept_no
-    FROM departments
-    WHERE dept_name = 'Sales'
-  )
-);
 
 # SUB-QUERIES EXERCISE
 
@@ -45,19 +21,19 @@ SELECT * FROM employees WHERE hire_date = (
 # 2 Find all the titles held by all employees
 # with the first name Aamod.dept_no
 
-SELECT first_name FROM employees WHERE emp_no IN (
-  SELECT emp_no FROM titles WHERE emp_no IN (
-    SELECT emp_no FROM employees WHERE first_name = 'aamod'
-  )
-);
+# SELECT first_name FROM employees WHERE emp_no IN (
+#   SELECT emp_no FROM titles WHERE emp_no IN (
+#     SELECT emp_no FROM employees WHERE first_name = 'aamod'
+#   )
+# );
 
 SELECT DISTINCT title FROM titles WHERE emp_no IN (
   SELECT emp_no FROM employees WHERE first_name = 'aamod'
 );
 
-SELECT title FROM titles WHERE emp_no IN (
-  SELECT emp_no FROM employees WHERE first_name = 'aamod'
-);
+# SELECT title FROM titles WHERE emp_no IN (
+#   SELECT emp_no FROM employees WHERE first_name = 'aamod'
+# );
 
 # SELECT title FROM employees WHERE emp_no IN (
 #   SELECT emp_no FROM dept_manager WHERE emp_no = (
@@ -97,3 +73,36 @@ SELECT first_name, last_name FROM employees WHERE emp_no = (
   SELECT emp_no FROM salaries ORDER BY salary DESC LIMIT 1
 );
 
+
+
+# EXERCISES FROM CLASS
+
+SELECT first_name, last_name, birth_date
+FROM employees
+WHERE emp_no IN (
+  SELECT emp_no
+  FROM dept_manager
+)
+LIMIT 10;
+
+
+SELECT *
+FROM employees
+WHERE emp_no In (
+  SELECT emp_no
+  FROM dept_manager
+  WHERE to_date > curdate()
+)
+LIMIT 10;
+
+SELECT *
+FROM employees
+WHERE emp_no IN (
+  SELECT emp_no
+  FROM dept_emp
+  WHERE dept_no = (
+    SELECT dept_no
+    FROM departments
+    WHERE dept_name = 'Sales'
+  )
+);

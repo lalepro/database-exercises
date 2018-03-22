@@ -235,6 +235,9 @@ FROM employees AS e
     ON e.emp_no = s.emp_no
 GROUP BY e.gender;
 
+SELECT e.gender, sum(gender)
+FROM employees as e
+GROUP BY e.gender;
 
 
 
