@@ -165,18 +165,75 @@ ORDER BY e.emp_no;
 -- F 75690.00
 
 
+SELECT  e.gender, avg(salary)
+FROM employees AS e
+  JOIN dept_manager m
+    ON e.emp_no = m.emp_no
+  JOIN salaries s
+    ON m.emp_no = s.emp_no
+WHERE s.to_date >= curdate() and m.to_date >= curdate()
+GROUP BY e.gender;
+
+# ORDER BY salary DESC ;concat(e.first_name, ' ', e.last_name) AS Full_Name,
+
+SELECT max(salary) as MAX_SALARY, avg(salary), min(salary), dept_name AS DEPARTMENT_NAME
+FROM employees as e
+JOIN salaries s
+    ON e.emp_no = s.emp_no
+JOIN dept_emp emp
+    ON e.emp_no = emp.emp_no
+  JOIN departments d
+    ON emp.dept_no = d.dept_no
+WHERE s.to_date >= curdate() AND emp.to_date >= curdate()
+  GROUP BY dept_name
+  ORDER BY MAX_SALARY DESC ;
+
+SELECT salary, CONCAT(e.first_name, ' ', e.last_name) AS FULL_Name
+FROM employees AS e
+  JOIN salaries s
+    ON e.emp_no = s.emp_no
+WHERE s.to_date > curdate()
+ORDER BY salary DESC;
+
+SELECT salary FROM salaries WHERE to_date > curdate() GROUP BY salary DESC;
+
+SELECT dept_name FROM departments;
+
+
 -- Write a query to get the avg salary managers historically make by gender
 -- M 72810.94
 -- F 62037.21
+SELECT  e.gender, avg(salary)
+FROM employees AS e
+  JOIN dept_manager m
+    ON e.emp_no = m.emp_no
+  JOIN salaries s
+    ON m.emp_no = s.emp_no
+GROUP BY e.gender;
+
+
 
 
 -- get avg salary for all current employees by gender
 -- M 72044.66
 -- F 71963.57
+SELECT  e.gender, avg(salary), max(salary), min(salary), sum(e.gender)
+FROM employees AS e
+  JOIN salaries s
+    ON e.emp_no = s.emp_no
+WHERE s.to_date > curdate()
+GROUP BY e.gender;
+
 
 -- get avg historic salary for all employees by gender
 -- M 63842.25
 -- F 63750.17
+
+SELECT  e.gender, avg(salary), max(salary), min(salary), sum(e.gender)
+FROM employees AS e
+  JOIN salaries s
+    ON e.emp_no = s.emp_no
+GROUP BY e.gender;
 
 
 
